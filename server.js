@@ -18,3 +18,20 @@ connection.connect((err) => {
 
     // Call the function to start the application
     start();
+});
+
+// Function to start the application of CFONTS
+cfonts.say('Delia Young \nSQL Employee Tracker', {
+    font: 'block',
+    align: 'center',
+    colors: ['pink'],
+    background: 'transparent',
+    letterSpacing: 1,
+    lineHeight: 1,
+    space: true,
+    maxLength: '0',
+    gradient: false,
+    independentGradient: false,
+    transitionGradient: false,
+    env: 'node'
+});
