@@ -425,3 +425,154 @@ function viewEmployeesByManager() {
     );
 }
 
+// Function to view employees by department
+function viewEmployeesByDepartment() {
+    const query = `SELECT department.department_name, employee.first_name, employee.last_name, roles.title FROM employee LEFT JOIN roles ON employee.role_id = roles.id LEFT JOIN department ON roles.department_id = department.id ORDER BY department_name ASC;`;
+    connection.query(query, (err, res) => {
+        if (err) throw err;
+        console.log("\nEmployees by Department:");
+        console.table(res);
+        start();
+    }
+    );
+}
+
+// Function to delete departments roles employees
+function deleteDepartmentRoleEmployee() {
+    inquirer
+        .prompt([
+            {
+                name: "delete",
+                type: "list",
+                message: "What would you like to delete?",
+                choices: ["Department", "Role", "Employee"],
+            },
+        ])
+        .then((answer) => {
+            switch (answer.delete) {
+                case "Department":
+                    deleteDepartment();
+                    break;
+                case "Role":
+                    deleteRole();
+                    break;
+                case "Employee":
+                    deleteEmployee();
+                    break;
+                default:
+                    console.log(`Invalid action: ${answer.delete}`);
+                    start();
+                    break;
+            }
+        }
+        );
+}
+
+// Function to delete employees
+function deleteEmployee() {
+    const query = "SELECT * FROM employee";
+    connection.query(query, (err, res) => {
+        if (err) throw err;
+        const employeeList = res.map((employee) => employee.name);
+    });
+        employeeList.push({ name: "Go Back", value: "back" });
+        inquirer
+            .prompt([
+                {
+                    name: "employee",
+                    type: "list",
+                    message: "Select the employee to delete:",
+                    choices: employeeList,
+                },
+            ])
+            .then((answer) => {
+                if (answer.id === "back") {
+                    deleteDepartmentRoleEmployee();
+                    return;
+                }
+                const query = "DELETE FROM employee WHERE id = ?";
+                connection.query(query, [answer.id], (err, res) => {
+                    if (err) throw err;
+                    console.log("Employee deleted.");
+                    start();
+                }
+                );
+            }
+            );
+}
+
+// Function to delete roles
+function deleteDepartment() {
+    const query = "SELECT * FROM departments";
+    connection.query(query, (err, res) => {
+        if (err) throw err;
+        const departmentChoices = res.map((department) => ({
+            name: department.department_name,
+            value: department.id,
+        }));
+        inquirer
+            .prompt({
+                type: "list",
+                name: "departmentId",
+                message: "Which department do you want to delete?",
+                choices: [
+                    ...departmentChoices,
+                    { name: "Go Back", value: "back" },
+                ],
+            })
+            .then((answer) => {
+                if (answer.departmentId === "back") {
+                    deleteDepartmentsRolesEmployees();
+                } else {
+                    const query = "DELETE FROM departments WHERE id = ?";
+                    connection.query(
+                        query,
+                        [answer.departmentId],
+                        (err, res) => {
+                            if (err) throw err;
+                            console.log(
+                                `Deleted department with ID ${answer.departmentId} from the database!`
+                            );
+                            start();
+                        }
+                    );
+                }
+            });
+    });
+}
+
+// Function to view total utilized budget of a department
+function viewTotalUtilizedBudgetOfDepartment() {
+    const query = `SELECT * FROM departments`;
+    connection.query(query, (err, res) => {
+        if (err) throw err;
+        const departmentChoices = res.map((department) => ({
+            name: department.department_name,
+            value: department.id,
+        }));
+        inquirer
+            .prompt({
+                type: "list",
+                name: "departmentId",
+                message: "Which department do you want to view total salary for?",
+                choices: departmentChoices,
+            })
+            .then((answer) => {
+                const query = `SELECT department.name AS department, SUM(roles.salary) AS total_salary FROM employee LEFT JOIN roles ON employee.role_id = roles.id LEFT JOIN department ON roles.department_id = department.id WHERE department.id = ? GROUP BY department.name;`;
+                connection.query(query, [answer.departmentId], (err, res) => {
+                    if (err) throw err;
+                    const totalSalary = res[0].total_salary;
+                    console.log(
+                        `The tatol salary for employees in ${answer.departmentId} is ${totalSalary}`
+                    );
+                    start();
+                });
+            });
+    });
+}
+
+// close connection
+process.on("exit", () => {
+    connection.end();
+}
+);
