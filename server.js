@@ -7,7 +7,7 @@ const connection = mysql.createConnection({
     host: "localhost",
     port: 3306,
     user: "root",
-    password: "",
+    password: "BMWMercedes2020",
     database: "employee_trackerDB",
 });
 
@@ -24,7 +24,7 @@ connection.connect((err) => {
 cfonts.say('Delia Young \nSQL Employee Tracker', {
     font: 'block',
     align: 'center',
-    colors: ['pink'],
+    colors: ['candy'],
     background: 'transparent',
     letterSpacing: 1,
     lineHeight: 1,
@@ -130,7 +130,7 @@ function viewDepartments() {
 
 // Function to view all roles
 function viewRoles() {
-    const query = "SELECT * FROM roles.title, roles.id, department.department.name, roles.salary from roles join department on roles.department_id = department.id";
+    const query = "SELECT roles.title, roles.id, department.name, roles.salary FROM roles LEFT JOIN department ON roles.department_id = department.id";
     connection.query(query, (err, res) => {
         if (err) throw err;
         console.table(res);
@@ -160,8 +160,8 @@ function addDepartment() {
         })
         .then((answer) => {
             console.log(answer);
-            const query = "INSERT INTO department (name) VALUES (?)";
-            connection.query(query, (err, res) => {
+            const query = "INSERT INTO department (name) VALUES (?);";
+            connection.query(query,[answer.department], (err, res) => {
                 if (err) throw err;
                 console.log("Department added.");
                 start();
@@ -216,7 +216,7 @@ function addRole() {
 
 // Function to add an employee
 function addEmployee() {
-    connection.query("SELECT id, title FROM roles", (err, roles) => {
+    connection.query("SELECT id, title FROM roles", (error, roles) => {
         if (error) {
             console.error(error);
             return;
