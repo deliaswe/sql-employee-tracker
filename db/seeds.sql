@@ -10,23 +10,23 @@ INSERT INTO departments (department_name) VALUES
 ('Human Resources');
 
 INSERT INTO roles (title, salary, department_id) VALUES 
-('Sales Lead', 100000, 1),
-('Salesperson', 80000, 1),
-('Lead Engineer', 150000, 2),
-('Software Engineer', 120000, 2),
-('Accountant', 125000, 3),
-('Legal Team Lead', 250000, 4),
-('Lawyer', 190000, 4),
-('Lead Marketer', 130000, 5),
-('Marketing Associate', 100000, 5),
-('IT Manager', 150000, 6),
-('IT Support', 100000, 6),
-('Customer Service Manager', 120000, 7),
-('Customer Service Representative', 90000, 7),
-('Research and Development Manager', 150000, 8),
-('Research and Development Associate', 100000, 8),
-('Human Resources Manager', 150000, 9),
-('Human Resources Associate', 100000, 9);
+('Sales Lead', 100000.00, 1),
+('Salesperson', 80000.00, 1),
+('Lead Engineer', 150000.00, 2),
+('Software Engineer', 120000.00, 2),
+('Accountant', 125000.00, 3),
+('Legal Team Lead', 250000.00, 4),
+('Lawyer', 190000.00, 4),
+('Lead Marketer', 130000.00, 5),
+('Marketing Associate', 100000.00, 5),
+('IT Manager', 150000.00, 6),
+('IT Support', 100000.00, 6),
+('Customer Service Manager', 120000.00, 7),
+('Customer Service Representative', 90000.00, 7),
+('Research and Development Manager', 150000.00, 8),
+('Research and Development Associate', 100000.00, 8),
+('Human Resources Manager', 150000.00, 9),
+('Human Resources Associate', 100000.00, 9);
 
 INSERT INTO employees (first_name, last_name, role_id, manager_id) VALUES 
 ('Jeff', 'Bezos', 1, 1),
@@ -47,3 +47,7 @@ INSERT INTO employees (first_name, last_name, role_id, manager_id) VALUES
 ('Jack', 'Dorsey', 16, 8),
 ('Bobby', 'Murphy', 17, 9),
 ('Michael', 'Dell', 18, 9);
+
+SELECT * FROM departments;
+SELECT * FROM roles;
+SELECT * FROM employees;

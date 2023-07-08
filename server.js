@@ -130,7 +130,7 @@ function viewDepartments() {
 
 // Function to view all roles
 function viewRoles() {
-    const query = "SELECT roles.title, roles.id, department.name, roles.salary FROM roles LEFT JOIN department ON roles.department_id = department.id";
+    const query = "SELECT * FROM roles.title, roles.id, department.name, roles.salary FROM roles LEFT JOIN department ON roles.department_id = department.id";
     connection.query(query, (err, res) => {
         if (err) throw err;
         console.table(res);
