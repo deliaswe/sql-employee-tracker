@@ -11,7 +11,8 @@
 
 ## Description
 
-- Employee Tracker is a command-line application that allows you to manage employees, roles, and departments in a company. With Employee Tracker, you can:
+- Employee Tracker is a command-line application that allows you to manage employees, roles, and departments in a company. 
+- With Employee Tracker, you can:
 - View a list of all employees, roles, and departments.
 - Add new employees, roles, and departments.
 - Edit existing employees, roles, and departments.
@@ -24,7 +25,7 @@
 - https://github.com/deliaswe/sql-employee-tracker
 
 ## Usage
-- <img width="877" alt="sql-employee-tracker" src="https://github.com/deliaswe/sql-employee-tracker/assets/113808453/9d98dc01-565a-4d8a-9f1f-1958e6e72ab7">
+<img width="877" alt="sql-employee-tracker" src="https://github.com/deliaswe/sql-employee-tracker/assets/113808453/9d98dc01-565a-4d8a-9f1f-1958e6e72ab7">
 
 
 

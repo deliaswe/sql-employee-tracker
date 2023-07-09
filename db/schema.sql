@@ -3,7 +3,7 @@ CREATE DATABASE employee_trackerDB;
 USE employee_trackerDB;
 
 -- Path: db/schema.sql
-CREATE TABLE department (
+CREATE TABLE departments (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     department_name VARCHAR(30) NOT NULL
 );
@@ -13,11 +13,11 @@ CREATE TABLE roles (
     title VARCHAR(30) NOT NULL,
     salary DECIMAL(10,2),
     department_id INT,
-    FOREIGN KEY (department_id) REFERENCES department(id)
+    FOREIGN KEY (department_id) REFERENCES departments(id)
     ON DELETE SET NULL
 );
 
-CREATE TABLE employee (
+CREATE TABLE employees (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     first_name VARCHAR(30) NOT NULL,
     last_name VARCHAR(30) NOT NULL,
