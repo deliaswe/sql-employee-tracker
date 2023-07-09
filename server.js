@@ -119,7 +119,8 @@ function start() {
 
 // Function to view all departments
 function viewDepartments() {
-    const query = "SELECT * FROM department";
+    const query = "SELECT * FROM departments";
+
     connection.query(query, (err, res) => {
         if (err) throw err;
         console.table(res);
@@ -141,7 +142,20 @@ function viewRoles() {
 
 // Function to view all employees
 function viewEmployees() {
-    const query = `SELECT employee.id, employee.first_name, employee.last_name, roles.title, department.name AS department, roles.salary, CONCAT(manager.first_name, ' ', manager.last_name) AS manager FROM employee LEFT JOIN roles ON employee.role_id = roles.id LEFT JOIN department ON roles.department_id = department.id LEFT JOIN employee manager ON manager.id = employee.manager_id`;
+    const query = `SELECT 
+    employees.id, 
+    employees.first_name, 
+    employees.last_name, 
+    roles.title, 
+    departments.department_name AS department, 
+    roles.salary, 
+    CONCAT(manager.first_name, ' ', manager.last_name) AS manager 
+    FROM 
+    employees 
+    LEFT JOIN roles ON employees.role_id = roles.id 
+    LEFT JOIN departments ON roles.department_id = departments.id 
+    LEFT JOIN employees manager ON manager.id = employees.manager_id`;
+
     connection.query(query, (err, res) => {
         if (err) throw err;
         console.table(res);
