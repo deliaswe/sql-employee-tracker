@@ -334,12 +334,12 @@ function addManager() {
                     {
                         name: "employee",
                         type: "input",
-                        message: "Select the employee to add a manager to:",
+                        message: "Select the employee by first name to add a manager to:",
                     },
                     {
                         name: "manager",
                         type: "list",
-                        message: "Select the employee's manager:",
+                        message: "Select the employee's manager by first name:",
                         choices: resEmployee.map((employee) => employee.first_name),
                     },
                 ])

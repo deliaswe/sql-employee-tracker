@@ -27,11 +27,14 @@
 ## Usage
 <img width="877" alt="sql-employee-tracker" src="https://github.com/deliaswe/sql-employee-tracker/assets/113808453/9d98dc01-565a-4d8a-9f1f-1958e6e72ab7">
 
+https://github.com/deliaswe/sql-employee-tracker/assets/113808453/0232a463-5c56-4c8a-a2f7-29745509c542
+
 
 
 ## License
 ![GitHub all releases](https://img.shields.io/github/downloads/deliaswe/Professional-Readme-Generator/total?label=Delia%20young&logo=github&logoColor=%23ff69b4&style=for-the-badge)
-- [MIT](#MIT)
+- ![MIT License](https://img.shields.io/badge/license-MIT-pink)
+
 MIT License
 
 Copyright (c) 2023 Delia Young
